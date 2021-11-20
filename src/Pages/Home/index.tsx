@@ -68,30 +68,10 @@ export default function Home() {
         console.log("loading true");
         setLoading(true);
       }
-
-      // if (!autoLoad) return;
-      // console.log(
-      //   "🚀 ~ file: index.tsx ~ line 35 ~ handleScroll ~ document.documentElement.scrollTop",
-      //   document.documentElement.scrollTop
-      // );
-      // console.log(
-      //   "🚀 ~ file: index.tsx ~ line 39 ~ handleScroll ~ document.documentElement.offsetHeight",
-      //   document.documentElement.offsetHeight
-      // );
-      // if (
-      //   window.innerHeight + document.documentElement.scrollTop + 50 <
-      //   document.documentElement.offsetHeight
-      // )
-      //   return;
-      // console.log("loading: true");
-      // setLoading(true);
     }
-    // if (!autoLoad && isLoading) onLoad();
 
-    if (autoLoad && isLoading) {
-      console.log("load automatically");
-      onLoad().then(() => setLoading(false));
-    }
+    if (autoLoad && isLoading) onLoad().then(() => setLoading(false));
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
