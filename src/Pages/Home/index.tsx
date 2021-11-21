@@ -33,7 +33,7 @@ export default function Home() {
     if (!autoLoad && !isLoading) {
       return (
         <Layout.PrimaryButton onClick={onLoad}>
-          Cargar más Pokemon
+          Load more Pokemons
         </Layout.PrimaryButton>
       );
     }

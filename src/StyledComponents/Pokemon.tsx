@@ -17,6 +17,7 @@ const Card = styled.div`
   relative 
   transition
   shadow
+  cursor-pointer
   `}
 `;
 

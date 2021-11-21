@@ -49,7 +49,7 @@ export default function Detail() {
             <GoX size={"2rem"} className="text-red-600 ml-4" />
           </Layout.Row>
           <Layout.PrimaryButton onClick={goPokedex}>
-            Volver a Pokedex
+            Return to Pokedex
           </Layout.PrimaryButton>
         </Layout.Column>
       </Layout.Container>
@@ -81,7 +81,7 @@ export default function Detail() {
       </Layout.Row>
       <Layout.Row justifyCenter alignCenter className="mt-4">
         <Layout.PrimaryButton onClick={goPokedex}>
-          Volver a Pokedex
+          Return to Pokedex
         </Layout.PrimaryButton>
       </Layout.Row>
     </>
