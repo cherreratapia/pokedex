@@ -18,8 +18,11 @@ export default function BackButton({ pokemonId }: IProps) {
   if (!pokemonId) return null;
 
   return (
-    <Layout.CircleButton onClick={goBack} disabled={pokemonId === 1}>
-      <GoChevronLeft size="2rem" />
-    </Layout.CircleButton>
+    <Layout.Column alignCenter>
+      <Layout.CircleButton onClick={goBack} disabled={pokemonId === 1}>
+        <GoChevronLeft size="2rem" />
+      </Layout.CircleButton>
+      {pokemonId !== 1 ? <Layout.Control>Previous</Layout.Control> : null}
+    </Layout.Column>
   );
 }

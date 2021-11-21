@@ -17,8 +17,11 @@ export default function ForwardButton({ pokemonId }: IProps) {
   if (!pokemonId) return null;
 
   return (
-    <Layout.CircleButton onClick={goFoward}>
-      <GoChevronRight size="2rem" />
-    </Layout.CircleButton>
+    <Layout.Column alignCenter>
+      <Layout.CircleButton onClick={goFoward}>
+        <GoChevronRight size="2rem" />
+      </Layout.CircleButton>
+      <Layout.Control>Next</Layout.Control>
+    </Layout.Column>
   );
 }

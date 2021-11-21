@@ -93,6 +93,12 @@ const Loading = () => {
   );
 };
 
+const Control = tw.h4`
+  text-2xl
+  text-gray-800
+  font-semibold
+`;
+
 const CircleButton = styled.button(({ disabled }) => [
   tw`p-4
   rounded-full
@@ -109,4 +115,13 @@ const CircleButton = styled.button(({ disabled }) => [
   disabled && tw`cursor-not-allowed`,
 ]);
 
-export { Container, Row, Column, PrimaryButton, Loading, CircleButton, Title };
+export {
+  Container,
+  Row,
+  Column,
+  PrimaryButton,
+  Loading,
+  CircleButton,
+  Title,
+  Control,
+};
