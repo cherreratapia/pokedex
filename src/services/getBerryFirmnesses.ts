@@ -5,14 +5,9 @@ export default async function getBerryFirmnesses(
   id: number
 ): Promise<IBerryFirmness> {
   const url: string = "https://pokeapi.co/api/v2/berry-firmness/" + String(id);
-  try {
-    const { data } = await axios({
-      url,
-      method: "GET",
-    });
-    return data;
-  } catch (error) {
-    console.error("error", error);
-    return null;
-  }
+  const { data } = await axios({
+    url,
+    method: "GET",
+  });
+  return data;
 }

@@ -6,14 +6,9 @@ export default async function getMoveDamageClasses(
 ): Promise<IMoveDamageClass> {
   const url: string =
     "https://pokeapi.co/api/v2/move-damage-class/" + String(id);
-  try {
-    const { data } = await axios({
-      url,
-      method: "GET",
-    });
-    return data;
-  } catch (error) {
-    console.error("error", error);
-    return null;
-  }
+  const { data } = await axios({
+    url,
+    method: "GET",
+  });
+  return data;
 }

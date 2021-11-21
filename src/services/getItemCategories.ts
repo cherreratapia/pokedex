@@ -5,14 +5,9 @@ export default async function getItemCategories(
   id: number
 ): Promise<IItemCategory> {
   const url: string = "https://pokeapi.co/api/v2/item-category/" + String(id);
-  try {
-    const { data } = await axios({
-      url,
-      method: "GET",
-    });
-    return data;
-  } catch (error) {
-    console.error("error", error);
-    return null;
-  }
+  const { data } = await axios({
+    url,
+    method: "GET",
+  });
+  return data;
 }

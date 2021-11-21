@@ -1,17 +1,10 @@
-
-import axios from 'axios'
-import { undefined } from '../interfaces/PokeApi'
+import axios from "axios";
 
 export default async function getCommonModels(id: number): Promise<undefined> {
-  const url: string = 'https://pokeapi.co/apiundefined/' + String(id)
-  try {
-    const { data } = await axios({
-      url,
-      method: 'GET'
-    })
-    return data
-  } catch (error) {
-    console.error('error', error)
-    return null
-  }
+  const url: string = "https://pokeapi.co/api/" + String(id);
+  const { data } = await axios({
+    url,
+    method: "GET",
+  });
+  return data;
 }

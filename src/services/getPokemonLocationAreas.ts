@@ -7,14 +7,9 @@ export default async function getPokemonLocationAreas(
   const url: string = `https://pokeapi.co/api/v2/pokemon/${String(
     id
   )}/encounters/`;
-  try {
-    const { data } = await axios({
-      url,
-      method: "GET",
-    });
-    return data;
-  } catch (error) {
-    console.error("error", error);
-    return null;
-  }
+  const { data } = await axios({
+    url,
+    method: "GET",
+  });
+  return data;
 }
