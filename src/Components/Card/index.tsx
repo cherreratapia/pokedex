@@ -14,7 +14,7 @@ export default function PokemonCard(props: IProps) {
 
   useEffect(() => {
     const { name } = pokemonEndpoint;
-    getPokemon({ name })
+    getPokemon(name)
       .then((data) => setPokemon(data))
       .catch((err) => {
         setLoading(false);

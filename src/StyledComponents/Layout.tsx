@@ -16,6 +16,7 @@ interface IFlexProps {
   alignCenter?: boolean;
   alignEnd?: boolean;
   flexWrap?: boolean;
+  hScreen?: boolean;
 }
 const Row = styled.div(
   ({
@@ -26,6 +27,7 @@ const Row = styled.div(
     alignCenter,
     alignEnd,
     flexWrap,
+    hScreen,
   }: IFlexProps) => [
     tw`flex flex-row flex-1`,
     justifyCenter && tw`justify-center`,
@@ -35,6 +37,7 @@ const Row = styled.div(
     alignCenter && tw`items-center`,
     alignEnd && tw`items-end`,
     flexWrap && tw`flex-wrap`,
+    hScreen && tw`h-screen`,
   ]
 );
 const Column = styled.div(
@@ -46,6 +49,7 @@ const Column = styled.div(
     alignCenter,
     alignEnd,
     flexWrap,
+    hScreen,
   }: IFlexProps) => [
     tw`flex flex-col flex-1`,
     justifyCenter && tw`justify-center`,
@@ -55,8 +59,15 @@ const Column = styled.div(
     alignCenter && tw`items-center`,
     alignEnd && tw`items-end`,
     flexWrap && tw`flex-wrap`,
+    hScreen && tw`h-screen`,
   ]
 );
+
+const Title = tw.h1`
+text-4xl
+font-bold
+text-gray-800
+`;
 
 const Button = tw.button`
   flex 
@@ -82,8 +93,8 @@ const Loading = () => {
   );
 };
 
-const CircleButton = tw.button`
-  p-4
+const CircleButton = styled.button(({ disabled }) => [
+  tw`p-4
   rounded-full
   flex
   justify-center
@@ -93,9 +104,9 @@ const CircleButton = tw.button`
   border-2
   border-gray-400
   text-gray-100
-  hover:bg-gray-50
-  hover:text-gray-400
-  transition
-`;
+  transition`,
+  !disabled && tw`hover:bg-gray-50 hover:text-gray-400`,
+  disabled && tw`cursor-not-allowed`,
+]);
 
-export { Container, Row, Column, PrimaryButton, Loading, CircleButton };
+export { Container, Row, Column, PrimaryButton, Loading, CircleButton, Title };

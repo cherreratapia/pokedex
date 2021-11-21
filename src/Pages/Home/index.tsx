@@ -64,10 +64,8 @@ export default function Home() {
       if (
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight
-      ) {
-        console.log("loading true");
+      )
         setLoading(true);
-      }
     }
 
     if (autoLoad && isLoading) onLoad().then(() => setLoading(false));
