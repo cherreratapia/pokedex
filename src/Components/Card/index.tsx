@@ -1,8 +1,8 @@
+import Types from "Components/Types";
 import { INamedAPIResource, IPokemon } from "interfaces/PokeApi";
 import { useEffect, useState } from "react";
 import getPokemon from "services/getPokemon";
-import { Layout, Pokemon } from "StyledComponents";
-import PokemonTypes from "StyledComponents/PokemonTypes";
+import { Pokemon } from "StyledComponents";
 
 interface IProps {
   pokemonEndpoint: INamedAPIResource;
@@ -35,17 +35,7 @@ export default function PokemonCard(props: IProps) {
       <Pokemon.Info>
         <Pokemon.Id>Nº {pokemon?.id}</Pokemon.Id>
         <Pokemon.Name>{pokemon?.name}</Pokemon.Name>
-        <Layout.Row>
-          {pokemon?.types.map(({ type }, index) => {
-            const { name } = type;
-            const Type = PokemonTypes[name];
-            return (
-              <Type key={index}>
-                <Pokemon.Type>{name}</Pokemon.Type>
-              </Type>
-            );
-          })}
-        </Layout.Row>
+        <Types pokemon={pokemon} />
       </Pokemon.Info>
     </Pokemon.Card>
   );

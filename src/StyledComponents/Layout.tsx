@@ -82,4 +82,20 @@ const Loading = () => {
   );
 };
 
-export { Container, Row, Column, PrimaryButton, Loading };
+const CircleButton = tw.button`
+  p-4
+  rounded-full
+  flex
+  justify-center
+  items-center
+  mx-8
+  bg-gray-400
+  border-2
+  border-gray-400
+  text-gray-100
+  hover:bg-gray-50
+  hover:text-gray-400
+  transition
+`;
+
+export { Container, Row, Column, PrimaryButton, Loading, CircleButton };
