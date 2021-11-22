@@ -1,5 +1,5 @@
 import { IPokemon } from "interfaces/PokeApi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import getPokemon from "services/getPokemon";
@@ -9,9 +9,13 @@ import Types from "Components/Types";
 import BackButton from "Components/BackButton";
 import ForwardButton from "Components/ForwardButton";
 import Fallback from "./Fallback";
+import getPokemonList from "services/getPokemonList";
+import BaseContext from "Store/Contexts/BaseContext";
+import { BaseTypes } from "Store/Reducers/BaseReducer";
 
 export default function Detail() {
   const navigate = useNavigate();
+  const { state, dispatch } = useContext(BaseContext);
   const { name } = useParams();
   const [pokemon, setPokemon] = useState<IPokemon>();
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -19,6 +23,12 @@ export default function Detail() {
   const goPokedex = () => {
     navigate("/");
   };
+
+  useEffect(() => {
+    getPokemonList({}).then(({ count }) =>
+      dispatch({ type: BaseTypes.SetMaxId, payload: count })
+    );
+  }, []);
 
   useEffect(() => {
     if (!name) {

@@ -10,7 +10,7 @@ export type IState = {
 
 export type IAction = {
   type: string;
-  payload?: INamedAPIResource[] | boolean | 12 | 24 | 36;
+  payload?: INamedAPIResource[] | boolean | number | 12 | 24 | 36;
 };
 
 const initialState: IState = {
