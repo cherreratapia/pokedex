@@ -13,7 +13,6 @@
 ### TODO:
 
 - Test Unitarios (Se previene en parte con el uso de TS)
-- Docker
 
 ### Requirements
 
