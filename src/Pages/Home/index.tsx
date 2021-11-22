@@ -1,32 +1,33 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Layout } from "StyledComponents";
 import { INamedAPIResource } from "interfaces/PokeApi";
 import getPokemonList from "services/getPokemonList";
 import PokemonCard from "Components/Card";
 import Search from "Components/Search";
+import BaseContext from "Store/Contexts/BaseContext";
+import { BaseTypes } from "Store/Reducers/BaseReducer";
 
 export default function Home() {
-  const [pokemons, setPokemons] = useState<INamedAPIResource[]>([]);
-  const [offset, setOffset] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(12);
-  const [hasNext, setNext] = useState<boolean>();
+  const { state, dispatch } = useContext(BaseContext);
+  const { pokemons, hasNext, offset, limit } = state;
+  console.log("🚀 ~ file: index.tsx ~ line 11 ~ Home ~ state", state);
   const [autoLoad, setAutoLoad] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const onLoad = async () => {
     if (!hasNext) return;
     setAutoLoad(true);
-    setOffset((prev) => prev + limit);
     try {
       const { results, next } = await getPokemonList({
         offset: offset + limit,
         limit,
       });
-      setNext(!!next);
-      setPokemons([...pokemons, ...results]);
+      dispatch({ type: BaseTypes.SetNext, payload: !!next });
+      dispatch({ type: BaseTypes.SetPokemons, payload: results });
     } catch (error) {
       console.error("There was an error retrieving pokemons: ", error);
     }
+    dispatch({ type: BaseTypes.NextPage });
   };
 
   const showAutoLoad = () => {
@@ -48,9 +49,9 @@ export default function Home() {
     const getInitialPokemons = async () => {
       try {
         const { results, next } = await getPokemonList({ offset, limit });
-        setNext(!!next);
+        dispatch({ type: BaseTypes.SetNext, payload: !!next });
         if (results[0].name !== pokemons[0]?.name)
-          setPokemons([...pokemons, ...results]);
+          dispatch({ type: BaseTypes.SetPokemons, payload: results });
       } catch (error) {
         console.log("error", error);
       }
@@ -59,7 +60,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    function handleScroll(e: Event) {
+    function handleScroll() {
       if (!autoLoad) return;
       if (isLoading) return;
       if (

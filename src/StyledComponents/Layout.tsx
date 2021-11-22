@@ -68,6 +68,9 @@ const Column = styled.div(
 const Logo = tw.img`
   w-3/4
 `;
+const MiniLogo = tw.img`
+  w-1/5 my-2
+`;
 
 const Shadow = tw.div`
   shadow-xl p-4
@@ -124,6 +127,10 @@ const CircleButton = styled.button(({ disabled }) => [
   !disabled && tw`hover:bg-gray-50 hover:text-gray-400`,
   disabled && tw`cursor-not-allowed`,
 ]);
+
+const EmptyCircleButton = tw.button`
+  lg:w-32 lg:h-16
+`;
 
 interface InputProps {
   placeholder: string;
@@ -213,7 +220,9 @@ export {
   Column,
   PrimaryButton,
   Logo,
+  MiniLogo,
   Loading,
+  EmptyCircleButton,
   CircleButton,
   Title,
   Control,

@@ -20,6 +20,33 @@ export default function Detail() {
     navigate("/");
   };
 
+  const renderFallback = () => {
+    const Component = () =>
+      isLoading ? (
+        <Layout.Loading />
+      ) : (
+        <>
+          <Layout.Row alignCenter>
+            <Layout.Title>Pokemon Not Found</Layout.Title>
+            <GoX size={"2rem"} className="text-red-600 ml-4" />
+          </Layout.Row>
+          <Layout.PrimaryButton onClick={goPokedex}>
+            Return to Pokedex
+          </Layout.PrimaryButton>
+        </>
+      );
+    return (
+      <Layout.Container>
+        <Layout.Column justifyCenter alignCenter hScreen>
+          <Layout.Row justifyCenter>
+            <Layout.Logo src="/assets/logo.png" />
+          </Layout.Row>
+          <Component />
+        </Layout.Column>
+      </Layout.Container>
+    );
+  };
+
   useEffect(() => {
     if (!name) {
       setLoading(false);
@@ -31,59 +58,42 @@ export default function Detail() {
       .finally(() => setLoading(false));
   }, [name]);
 
-  if (isLoading)
-    return (
-      <Layout.Container>
-        <Layout.Column justifyCenter alignCenter hScreen>
-          <Layout.Loading />
-        </Layout.Column>
-      </Layout.Container>
-    );
-
-  if (!isLoading && !pokemon)
-    return (
-      <Layout.Container>
-        <Layout.Column justifyCenter alignCenter hScreen>
-          <Layout.Row alignCenter>
-            <Layout.Title>Pokemon Not Found</Layout.Title>
-            <GoX size={"2rem"} className="text-red-600 ml-4" />
-          </Layout.Row>
-          <Layout.PrimaryButton onClick={goPokedex}>
-            Return to Pokedex
-          </Layout.PrimaryButton>
-        </Layout.Column>
-      </Layout.Container>
-    );
+  if (isLoading || (!isLoading && !pokemon)) return renderFallback();
 
   return (
     <>
-      <Layout.Row justifyCenter alignCenter>
-        <BackButton pokemonId={pokemon?.id} />
-        <PokemonDetail.Container>
-          <Layout.Row justifyCenter alignCenter>
-            <PokemonDetail.Name>{pokemon?.name}</PokemonDetail.Name>
-            <PokemonDetail.Id>Nº {pokemon?.id}</PokemonDetail.Id>
-          </Layout.Row>
-          <Layout.Row>
-            <Layout.Column>
-              <PokemonDetail.Image src={pokemon?.sprites.front_default} />
+      <Layout.Column>
+        <Layout.Row justifyCenter>
+          <Layout.MiniLogo src="/assets/logo.png" />
+        </Layout.Row>
+        <Layout.Row justifyCenter alignCenter>
+          <BackButton pokemonId={pokemon?.id} />
+          <PokemonDetail.Container>
+            <Layout.Row justifyCenter alignCenter>
+              <PokemonDetail.Name>{pokemon?.name}</PokemonDetail.Name>
+              <PokemonDetail.Id>Nº {pokemon?.id}</PokemonDetail.Id>
+            </Layout.Row>
+            <Layout.Row>
+              <Layout.Column>
+                <PokemonDetail.Image src={pokemon?.sprites.front_default} />
+              </Layout.Column>
+              <Layout.Column>
+                <Info pokemon={pokemon} />
+              </Layout.Column>
+            </Layout.Row>
+            <Layout.Column alignCenter>
+              <Pokemon.Name>Tipo</Pokemon.Name>
+              <Types pokemon={pokemon} />
             </Layout.Column>
-            <Layout.Column>
-              <Info pokemon={pokemon} />
-            </Layout.Column>
-          </Layout.Row>
-          <Layout.Column alignCenter>
-            <Pokemon.Name>Tipo</Pokemon.Name>
-            <Types pokemon={pokemon} />
-          </Layout.Column>
-        </PokemonDetail.Container>
-        <ForwardButton pokemonId={pokemon?.id} />
-      </Layout.Row>
-      <Layout.Row justifyCenter alignCenter className="mt-4">
-        <Layout.PrimaryButton onClick={goPokedex}>
-          Return to Pokedex
-        </Layout.PrimaryButton>
-      </Layout.Row>
+          </PokemonDetail.Container>
+          <ForwardButton pokemonId={pokemon?.id} />
+        </Layout.Row>
+        <Layout.Row justifyCenter alignCenter className="mt-4">
+          <Layout.PrimaryButton onClick={goPokedex}>
+            Return to Pokedex
+          </Layout.PrimaryButton>
+        </Layout.Row>
+      </Layout.Column>
     </>
   );
 }

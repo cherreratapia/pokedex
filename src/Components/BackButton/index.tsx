@@ -16,6 +16,8 @@ export default function BackButton({ pokemonId }: IProps) {
   };
 
   if (!pokemonId) return null;
+  if (pokemonId === 1) return <Layout.EmptyCircleButton />;
+  // 132x68
 
   return (
     <Layout.Column alignCenter>
