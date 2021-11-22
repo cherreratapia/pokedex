@@ -8,7 +8,7 @@ import Info from "./Info";
 import Types from "Components/Types";
 import BackButton from "Components/BackButton";
 import ForwardButton from "Components/ForwardButton";
-import { GoX } from "react-icons/go";
+import Fallback from "./Fallback";
 
 export default function Detail() {
   const navigate = useNavigate();
@@ -18,33 +18,6 @@ export default function Detail() {
 
   const goPokedex = () => {
     navigate("/");
-  };
-
-  const renderFallback = () => {
-    const Component = () =>
-      isLoading ? (
-        <Layout.Loading />
-      ) : (
-        <>
-          <Layout.Row alignCenter>
-            <Layout.Title>Pokemon Not Found</Layout.Title>
-            <GoX size={"2rem"} className="text-red-600 ml-4" />
-          </Layout.Row>
-          <Layout.PrimaryButton onClick={goPokedex}>
-            Return to Pokedex
-          </Layout.PrimaryButton>
-        </>
-      );
-    return (
-      <Layout.Container>
-        <Layout.Column justifyCenter alignCenter hScreen>
-          <Layout.Row justifyCenter>
-            <Layout.Logo src="/assets/logo.png" />
-          </Layout.Row>
-          <Component />
-        </Layout.Column>
-      </Layout.Container>
-    );
   };
 
   useEffect(() => {
@@ -58,7 +31,8 @@ export default function Detail() {
       .finally(() => setLoading(false));
   }, [name]);
 
-  if (isLoading || (!isLoading && !pokemon)) return renderFallback();
+  if (isLoading || (!isLoading && !pokemon))
+    return <Fallback isLoading={isLoading} />;
 
   return (
     <>
