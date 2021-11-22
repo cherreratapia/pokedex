@@ -12,10 +12,11 @@ import Fallback from "./Fallback";
 import getPokemonList from "services/getPokemonList";
 import BaseContext from "Store/Contexts/BaseContext";
 import { BaseTypes } from "Store/Reducers/BaseReducer";
+import MiniLogo from "assets/Logo.png";
 
 export default function Detail() {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(BaseContext);
+  const { dispatch } = useContext(BaseContext);
   const { name } = useParams();
   const [pokemon, setPokemon] = useState<IPokemon>();
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -48,7 +49,7 @@ export default function Detail() {
     <>
       <Layout.Column>
         <Layout.Row justifyCenter>
-          <Layout.MiniLogo src="/assets/logo.png" />
+          <Layout.MiniLogo src={MiniLogo} />
         </Layout.Row>
         <Layout.Row justifyCenter alignCenter>
           <BackButton pokemonId={pokemon?.id} />

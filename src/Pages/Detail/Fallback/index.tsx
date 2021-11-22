@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { Layout } from "StyledComponents";
 import { GoX } from "react-icons/go";
+import Logo from "assets/Logo.png";
 
 interface IProps {
   isLoading: boolean;
@@ -16,7 +17,7 @@ export default function Fallback(props: IProps) {
     <Layout.Container>
       <Layout.Column justifyCenter alignCenter hScreen>
         <Layout.Row justifyCenter>
-          <Layout.Logo src="/assets/logo.png" />
+          <Layout.Logo src={Logo} />
         </Layout.Row>
         {isLoading ? (
           <Layout.Loading />
