@@ -12,7 +12,7 @@ import Fallback from "./Fallback";
 import getPokemonList from "services/getPokemonList";
 import BaseContext from "Store/Contexts/BaseContext";
 import { BaseTypes } from "Store/Reducers/BaseReducer";
-import MiniLogo from "assets/Logo.png";
+import MiniLogo from "/assets/Logo.png";
 
 export default function Detail() {
   const navigate = useNavigate();

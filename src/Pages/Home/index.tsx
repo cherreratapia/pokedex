@@ -6,7 +6,7 @@ import Search from "Components/Search";
 import BaseContext from "Store/Contexts/BaseContext";
 import { BaseTypes } from "Store/Reducers/BaseReducer";
 import Limit from "Components/Limit";
-import Logo from "assets/Logo.png";
+import Logo from "/assets/Logo.png";
 
 export default function Home() {
   const { state, dispatch } = useContext(BaseContext);
