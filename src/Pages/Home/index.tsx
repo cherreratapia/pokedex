@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Layout } from "StyledComponents";
-import { INamedAPIResource } from "interfaces/PokeApi";
 import getPokemonList from "services/getPokemonList";
 import PokemonCard from "Components/Card";
 import Search from "Components/Search";
@@ -11,7 +10,6 @@ import Limit from "Components/Limit";
 export default function Home() {
   const { state, dispatch } = useContext(BaseContext);
   const { pokemons, hasNext, offset, limit } = state;
-  console.log("🚀 ~ file: index.tsx ~ line 11 ~ Home ~ state", state);
   const [autoLoad, setAutoLoad] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(false);
 
