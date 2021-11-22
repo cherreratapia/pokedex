@@ -30,7 +30,7 @@ export default function PokemonCard(props: IProps) {
 
   const onClick = () => {
     if (!pokemon) return;
-    navigate(`/pokemon/${pokemon.id}`);
+    navigate(`/pokedex/pokemon/${pokemon.id}`);
   };
 
   if (!pokemon && isLoading) return <Pokemon.Skeleton />;

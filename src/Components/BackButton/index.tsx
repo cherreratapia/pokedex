@@ -16,7 +16,7 @@ export default function BackButton({ pokemonId }: IProps) {
   const goBack = () => {
     if (!pokemonId) return null;
     if (pokemonId === 1) return null;
-    navigate(`/pokemon/${pokemonId - 1}`);
+    navigate(`/pokedex/pokemon/${pokemonId - 1}`);
   };
 
   useEffect(() => {

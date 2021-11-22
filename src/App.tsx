@@ -15,8 +15,8 @@ function App() {
     <BaseContext.Provider value={{ state, dispatch }}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pokemon/:name" element={<Detail />} />
+          <Route path="/pokedex/" element={<Home />} />
+          <Route path="/pokedex/pokemon/:name" element={<Detail />} />
         </Routes>
       </Router>
     </BaseContext.Provider>

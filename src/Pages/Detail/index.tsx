@@ -22,7 +22,7 @@ export default function Detail() {
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const goPokedex = () => {
-    navigate("/");
+    navigate("/pokedex/");
   };
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function Detail() {
                   <PokemonDetail.Image src={pokemon?.sprites.front_default} />
                 </PokemonDetail.ImageContainer>
                 <Layout.Column alignCenter flexGrow={false}>
-                  <Pokemon.Name>Tipo</Pokemon.Name>
+                  <Pokemon.Name>Type</Pokemon.Name>
                   <Types pokemon={pokemon} />
                 </Layout.Column>
               </Layout.Column>

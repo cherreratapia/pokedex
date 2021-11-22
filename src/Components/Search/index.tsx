@@ -20,7 +20,7 @@ export default function Search() {
     if (debouncedTerm && debouncedTerm === term) {
       setLoading(true);
       getPokemon(term)
-        .then(({ name }) => navigate(`/pokemon/${name}`))
+        .then(({ name }) => navigate(`/pokedex/pokemon/${name}`))
         .catch((err) => {
           console.error("This pokemon doesn't exist", err);
           setError(err);

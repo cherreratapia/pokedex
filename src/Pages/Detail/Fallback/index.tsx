@@ -10,7 +10,7 @@ export default function Fallback(props: IProps) {
   const { isLoading } = props;
   const navigate = useNavigate();
   const goPokedex = () => {
-    navigate("/");
+    navigate("/pokedex/");
   };
 
   return (

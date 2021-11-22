@@ -1,5 +1,6 @@
 {
   "name": "pokedex",
+  "homepage": "https://cherreratapia.github.io/pokedex/",
   "version": "0.1.0",
   "author": {
     "email": "caherreratapia@gmail.com",
@@ -8,7 +9,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -24,6 +26,7 @@
     "@types/styled-components": "^5.1.15",
     "@vitejs/plugin-react": "^1.0.0",
     "autoprefixer": "^10.4.0",
+    "gh-pages": "^3.2.3",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19",
     "twin.macro": "^2.8.1",

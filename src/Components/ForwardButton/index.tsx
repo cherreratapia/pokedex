@@ -18,7 +18,7 @@ export default function ForwardButton({ pokemonId }: IProps) {
 
   const goFoward = () => {
     if (!pokemonId) return null;
-    navigate(`/pokemon/${pokemonId + 1}`);
+    navigate(`/pokedex/pokemon/${pokemonId + 1}`);
   };
 
   useEffect(() => {
