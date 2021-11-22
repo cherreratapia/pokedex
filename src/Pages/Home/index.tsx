@@ -79,15 +79,22 @@ export default function Home() {
 
   return (
     <Layout.Container>
-      <Search />
-      <Layout.Row flexWrap justifyBetween>
-        {pokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.name} pokemonEndpoint={pokemon} />
-        ))}
-      </Layout.Row>
-      <Layout.Row justifyCenter alignCenter>
-        {showAutoLoad()}
-      </Layout.Row>
+      <Layout.Column>
+        <Layout.Row justifyCenter>
+          <Layout.Logo src="/assets/logo.png" />
+        </Layout.Row>
+        <Layout.Shadow>
+          <Search />
+          <Layout.Row flexWrap justifyBetween>
+            {pokemons.map((pokemon) => (
+              <PokemonCard key={pokemon.name} pokemonEndpoint={pokemon} />
+            ))}
+          </Layout.Row>
+          <Layout.Row justifyCenter alignCenter>
+            {showAutoLoad()}
+          </Layout.Row>
+        </Layout.Shadow>
+      </Layout.Column>
     </Layout.Container>
   );
 }

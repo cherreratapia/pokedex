@@ -65,6 +65,14 @@ const Column = styled.div(
   ]
 );
 
+const Logo = tw.img`
+  w-3/4
+`;
+
+const Shadow = tw.div`
+  shadow-xl p-4
+`;
+
 const Title = tw.h1`
 text-4xl
 font-bold
@@ -200,9 +208,11 @@ const TextInput = (props: InputProps) => {
 
 export {
   Container,
+  Shadow,
   Row,
   Column,
   PrimaryButton,
+  Logo,
   Loading,
   CircleButton,
   Title,
