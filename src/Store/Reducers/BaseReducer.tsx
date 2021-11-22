@@ -42,7 +42,7 @@ const reducer = (state: IState, action: IAction) => {
     case BaseTypes.NextPage:
       return { ...state, offset: state.offset + state.limit };
     case BaseTypes.SetLimit:
-      return { ...state, limit: action.payload };
+      return { ...state, limit: action.payload, pokemons: [], offset: 0 };
     case BaseTypes.SetNext:
       return { ...state, hasNext: action.payload };
     case BaseTypes.SetMaxId:

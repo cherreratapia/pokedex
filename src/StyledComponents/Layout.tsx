@@ -82,6 +82,21 @@ font-bold
 text-gray-800
 `;
 
+const ControlTitle = tw.h5`
+  font-semibold
+  text-gray-800
+  text-xl
+`;
+
+interface ButtonLimitProps {
+  active: boolean;
+}
+
+const ButtonLimit = styled.button(({ active }: ButtonLimitProps) => [
+  tw`text-gray-700 text-base mx-2`,
+  active && tw`font-bold underline`,
+]);
+
 const Button = tw.button`
   flex 
   justify-center
@@ -221,6 +236,8 @@ export {
   PrimaryButton,
   Logo,
   MiniLogo,
+  ControlTitle,
+  ButtonLimit,
   Loading,
   EmptyCircleButton,
   CircleButton,

@@ -6,6 +6,7 @@ import PokemonCard from "Components/Card";
 import Search from "Components/Search";
 import BaseContext from "Store/Contexts/BaseContext";
 import { BaseTypes } from "Store/Reducers/BaseReducer";
+import Limit from "Components/Limit";
 
 export default function Home() {
   const { state, dispatch } = useContext(BaseContext);
@@ -56,8 +57,8 @@ export default function Home() {
         console.log("error", error);
       }
     };
-    getInitialPokemons();
-  }, []);
+    getInitialPokemons().then(() => setLoading(false));
+  }, [limit]);
 
   useEffect(() => {
     function handleScroll() {
@@ -84,17 +85,26 @@ export default function Home() {
         <Layout.Row justifyCenter>
           <Layout.Logo src="/assets/logo.png" />
         </Layout.Row>
-        <Layout.Shadow>
-          <Search />
-          <Layout.Row flexWrap justifyBetween>
-            {pokemons.map((pokemon) => (
-              <PokemonCard key={pokemon.name} pokemonEndpoint={pokemon} />
-            ))}
-          </Layout.Row>
-          <Layout.Row justifyCenter alignCenter>
-            {showAutoLoad()}
-          </Layout.Row>
-        </Layout.Shadow>
+        {isLoading && !pokemons.length ? (
+          <Layout.Container>
+            <Layout.Column justifyCenter alignCenter hScreen>
+              <Layout.Loading />
+            </Layout.Column>
+          </Layout.Container>
+        ) : (
+          <Layout.Shadow>
+            <Search />
+            <Limit setLoading={setLoading} />
+            <Layout.Row flexWrap justifyBetween>
+              {pokemons.map((pokemon) => (
+                <PokemonCard key={pokemon.name} pokemonEndpoint={pokemon} />
+              ))}
+            </Layout.Row>
+            <Layout.Row justifyCenter alignCenter>
+              {showAutoLoad()}
+            </Layout.Row>
+          </Layout.Shadow>
+        )}
       </Layout.Column>
     </Layout.Container>
   );
