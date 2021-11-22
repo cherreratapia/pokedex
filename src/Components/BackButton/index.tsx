@@ -16,15 +16,15 @@ export default function BackButton({ pokemonId }: IProps) {
   };
 
   if (!pokemonId) return null;
-  if (pokemonId === 1) return <Layout.EmptyCircleButton />;
-  // 132x68
 
   return (
-    <Layout.Column alignCenter>
-      <Layout.CircleButton onClick={goBack} disabled={pokemonId === 1}>
-        <GoChevronLeft size="2rem" />
-      </Layout.CircleButton>
-      {pokemonId !== 1 ? <Layout.Control>Previous</Layout.Control> : null}
-    </Layout.Column>
+    <Layout.CircleColumnContainer>
+      <Layout.Column alignCenter>
+        <Layout.CircleButton onClick={goBack} disabled={pokemonId === 1}>
+          <GoChevronLeft size="2rem" />
+        </Layout.CircleButton>
+        {pokemonId !== 1 ? <Layout.Control>Previous</Layout.Control> : null}
+      </Layout.Column>
+    </Layout.CircleColumnContainer>
   );
 }

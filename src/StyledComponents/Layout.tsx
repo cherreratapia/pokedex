@@ -19,6 +19,7 @@ interface IFlexProps {
   alignEnd?: boolean;
   flexWrap?: boolean;
   hScreen?: boolean;
+  flexGrow?: boolean;
 }
 const Row = styled.div(
   ({
@@ -30,8 +31,9 @@ const Row = styled.div(
     alignEnd,
     flexWrap,
     hScreen,
+    flexGrow = true,
   }: IFlexProps) => [
-    tw`flex flex-row flex-1`,
+    tw`flex flex-row`,
     justifyCenter && tw`justify-center`,
     justifyEnd && tw`justify-end`,
     justifyBetween && tw`justify-between`,
@@ -40,6 +42,7 @@ const Row = styled.div(
     alignEnd && tw`items-end`,
     flexWrap && tw`flex-wrap`,
     hScreen && tw`h-screen`,
+    !flexGrow && tw`flex-1`,
   ]
 );
 const Column = styled.div(
@@ -52,8 +55,9 @@ const Column = styled.div(
     alignEnd,
     flexWrap,
     hScreen,
+    flexGrow = true,
   }: IFlexProps) => [
-    tw`flex flex-col flex-1`,
+    tw`flex flex-col`,
     justifyCenter && tw`justify-center`,
     justifyEnd && tw`justify-end`,
     justifyBetween && tw`justify-between`,
@@ -62,6 +66,7 @@ const Column = styled.div(
     alignEnd && tw`items-end`,
     flexWrap && tw`flex-wrap`,
     hScreen && tw`h-screen`,
+    flexGrow && tw`flex-1`,
   ]
 );
 
@@ -80,6 +85,13 @@ const Title = tw.h1`
 text-4xl
 font-bold
 text-gray-800
+`;
+
+const SubTitle = tw.h1`
+  text-2xl
+  font-semibold
+  text-gray-700
+  capitalize
 `;
 
 const ControlTitle = tw.h5`
@@ -127,10 +139,19 @@ const Control = tw.h4`
   font-semibold
 `;
 
+const CircleColumn = tw.div`
+  lg:w-44 w-0
+`;
+
+const CircleColumnContainer = tw.div`
+  hidden lg:block
+`;
+
 const CircleButton = styled.button(({ disabled }) => [
   tw`p-4
   rounded-full
-  flex
+  lg:flex
+  hidden
   justify-center
   items-center
   mx-8
@@ -142,10 +163,6 @@ const CircleButton = styled.button(({ disabled }) => [
   !disabled && tw`hover:bg-gray-50 hover:text-gray-400`,
   disabled && tw`cursor-not-allowed`,
 ]);
-
-const EmptyCircleButton = tw.button`
-  lg:w-32 lg:h-16
-`;
 
 interface InputProps {
   placeholder: string;
@@ -239,9 +256,11 @@ export {
   ControlTitle,
   ButtonLimit,
   Loading,
-  EmptyCircleButton,
+  CircleColumn,
+  CircleColumnContainer,
   CircleButton,
   Title,
+  SubTitle,
   Control,
   TextLabel,
   TextInput,

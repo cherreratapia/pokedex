@@ -38,7 +38,10 @@ export default function Detail() {
     }
     getPokemon(name)
       .then((data) => setPokemon(data))
-      .catch((err) => console.error("error getting pokemon", err))
+      .catch((err) => {
+        setPokemon(undefined);
+        console.error("error getting pokemon", err);
+      })
       .finally(() => setLoading(false));
   }, [name]);
 
@@ -52,26 +55,30 @@ export default function Detail() {
           <Layout.MiniLogo src={MiniLogo} />
         </Layout.Row>
         <Layout.Row justifyCenter alignCenter>
-          <BackButton pokemonId={pokemon?.id} />
+          <Layout.CircleColumn>
+            <BackButton pokemonId={pokemon?.id} />
+          </Layout.CircleColumn>
           <PokemonDetail.Container>
             <Layout.Row justifyCenter alignCenter>
               <PokemonDetail.Name>{pokemon?.name}</PokemonDetail.Name>
               <PokemonDetail.Id>Nº {pokemon?.id}</PokemonDetail.Id>
             </Layout.Row>
-            <Layout.Row>
-              <Layout.Column>
+            <PokemonDetail.Content>
+              <PokemonDetail.ImageContainer>
                 <PokemonDetail.Image src={pokemon?.sprites.front_default} />
-              </Layout.Column>
+              </PokemonDetail.ImageContainer>
               <Layout.Column>
                 <Info pokemon={pokemon} />
               </Layout.Column>
-            </Layout.Row>
+            </PokemonDetail.Content>
             <Layout.Column alignCenter>
               <Pokemon.Name>Tipo</Pokemon.Name>
               <Types pokemon={pokemon} />
             </Layout.Column>
           </PokemonDetail.Container>
-          <ForwardButton pokemonId={pokemon?.id} />
+          <Layout.CircleColumn>
+            <ForwardButton pokemonId={pokemon?.id} />
+          </Layout.CircleColumn>
         </Layout.Row>
         <Layout.Row justifyCenter alignCenter className="mt-4">
           <Layout.PrimaryButton onClick={goPokedex}>

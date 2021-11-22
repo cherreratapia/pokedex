@@ -6,7 +6,13 @@ const Container = tw(Layout.Container)`
     shadow-md
     mt-8
     p-8
+    mx-2
+    lg:mx-0
+    w-4/5
+    lg:w-full
     h-full
+    flex-col
+    lg:flex-row
 `;
 
 const Name = tw.h2`
@@ -31,6 +37,10 @@ const Description = tw.p`
     font-semibold
 `;
 
+const ImageContainer = tw.div`
+    flex flex-row justify-center lg:justify-start lg:mr-8
+`;
+
 const Image = styled(Pokemon.Image)`
   height: 250px;
   width: 250px;
@@ -45,9 +55,15 @@ const InfoItem = tw.div`
 const Info = tw.div`
     flex
     flex-col
-    bg-blue-100
+    bg-blue-50
     rounded-sm
     p-6
+`;
+
+const Content = tw.div`
+    flex
+    flex-col
+    lg:flex-row
 `;
 
 const TitleInfo = tw.h6`
@@ -61,6 +77,10 @@ const TextInfo = tw.span`
     text-gray-700
 `;
 
+const StatsColumn = tw(Layout.Column)`
+    pr-8
+`;
+
 const Stats = tw.span`
     text-base
     text-gray-700
@@ -68,15 +88,27 @@ const Stats = tw.span`
     mr-2
 `;
 
+const Ability = tw.div`
+    p-4
+    mb-4
+    border
+    border-gray-200
+    rounded
+`;
+
 export {
   Name,
   Id,
   Container,
+  Content,
+  ImageContainer,
   Image,
   Description,
   Info,
   InfoItem,
   TitleInfo,
   TextInfo,
+  StatsColumn,
   Stats,
+  Ability,
 };
