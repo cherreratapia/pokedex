@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { Layout } from "StyledComponents";
 import { GoX } from "react-icons/go";
-import Logo from "assets/Logo.png";
+import Logo from "assets/logo.png";
 
 interface IProps {
   isLoading: boolean;
