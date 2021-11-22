@@ -30,7 +30,7 @@ npm i -g yarn
 
 ## Quick start
 
-1. **Unzip repository**
+1. **Unzip repository or Clone repo**
 
 ```shell
 unzip pokedex.zip
