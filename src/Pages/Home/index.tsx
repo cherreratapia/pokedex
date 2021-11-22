@@ -3,6 +3,7 @@ import { Layout } from "StyledComponents";
 import { INamedAPIResource } from "interfaces/PokeApi";
 import getPokemonList from "services/getPokemonList";
 import PokemonCard from "Components/Card";
+import Search from "Components/Search";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<INamedAPIResource[]>([]);
@@ -78,6 +79,7 @@ export default function Home() {
 
   return (
     <Layout.Container>
+      <Search />
       <Layout.Row flexWrap justifyBetween>
         {pokemons.map((pokemon) => (
           <PokemonCard key={pokemon.name} pokemonEndpoint={pokemon} />

@@ -1,4 +1,6 @@
+import { ChangeEvent, useState } from "react";
 import tw, { styled } from "twin.macro";
+import { GoSearch, GoCircleSlash } from "react-icons/go";
 
 const Container = tw.div`
 container
@@ -115,6 +117,87 @@ const CircleButton = styled.button(({ disabled }) => [
   disabled && tw`cursor-not-allowed`,
 ]);
 
+interface InputProps {
+  placeholder: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  isLoading?: boolean;
+  isError?: boolean;
+  value: string;
+  onClean: () => void;
+}
+
+interface SearchIconProps {
+  isFocus: boolean;
+}
+
+const TextLabel = styled.label.attrs({
+  for: "text-input",
+})`
+  ${tw`text-sm font-medium text-gray-900 block mb-2`}
+`;
+
+const ErrorLabel = tw.button`
+  text-lg text-red-700 italic underline my-4 cursor-pointer
+`;
+
+const StyledTextInput = styled.input.attrs((props: InputProps) => ({
+  type: "text",
+  id: "text-input",
+  placeholder: props.placeholder || "Search",
+  onChange: props.onChange,
+}))`
+  ${tw`bg-gray-50 border border-r-0 border-gray-300 text-gray-900 text-sm rounded-lg rounded-br-none rounded-tr-none ring-transparent focus:border-red-400 outline-none block w-full xl:w-1/2 p-2.5 ml-2 mb-4`}
+`;
+
+const SearchIcon = styled.div(({ isFocus }: SearchIconProps) => [
+  `height: 42px;width: 42px;`,
+  tw`flex justify-center items-center bg-gray-50 border-gray-300 border border-l-0 rounded-lg rounded-bl-none rounded-tl-none p-2.5 cursor-pointer`,
+  isFocus && tw`border-red-400 border`,
+]);
+
+const GoSearchStyled = styled(GoSearch)`
+  animation: fadeLeft 0.2s ease-in forwards;
+  @keyframes fadeLeft {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+
+const TextInput = (props: InputProps) => {
+  const { isError, isLoading, onClean } = props;
+  const [isFocused, setFocused] = useState<boolean>(false);
+
+  return (
+    <Column>
+      <Row justifyCenter>
+        <StyledTextInput
+          {...props}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+        />
+        <SearchIcon isFocus={isFocused}>
+          {isError ? (
+            <GoCircleSlash size={32} className="text-red-700" />
+          ) : null}
+          {!isError && isLoading ? <Spinner /> : null}
+          {!isError && isFocused && !isLoading ? (
+            <GoSearchStyled size="32" className="text-red-400" />
+          ) : null}
+        </SearchIcon>
+      </Row>
+      <Row justifyCenter>
+        {isError ? (
+          <ErrorLabel onClick={onClean}>Pokemon not found</ErrorLabel>
+        ) : null}
+      </Row>
+    </Column>
+  );
+};
+
 export {
   Container,
   Row,
@@ -124,4 +207,6 @@ export {
   CircleButton,
   Title,
   Control,
+  TextLabel,
+  TextInput,
 };
