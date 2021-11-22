@@ -137,6 +137,7 @@ const Control = tw.h4`
   text-2xl
   text-gray-800
   font-semibold
+  capitalize
 `;
 
 const CircleColumn = tw.div`

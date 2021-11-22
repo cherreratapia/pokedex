@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GoChevronRight } from "react-icons/go";
 import { useNavigate } from "react-router";
 import { Layout } from "StyledComponents";
 import BaseContext from "Store/Contexts/BaseContext";
+import { IPokemon } from "interfaces/PokeApi";
+import getPokemon from "services/getPokemon";
 
 interface IProps {
   pokemonId?: number;
@@ -11,6 +13,7 @@ interface IProps {
 export default function ForwardButton({ pokemonId }: IProps) {
   const { state } = useContext(BaseContext);
   const { maxId } = state;
+  const [nextPokemon, setNextPokemon] = useState<IPokemon>();
   const navigate = useNavigate();
 
   const goFoward = () => {
@@ -18,18 +21,27 @@ export default function ForwardButton({ pokemonId }: IProps) {
     navigate(`/pokemon/${pokemonId + 1}`);
   };
 
-  if (!pokemonId) return null;
+  useEffect(() => {
+    if (!pokemonId) return;
+    getPokemon(String(pokemonId + 1))
+      .then(setNextPokemon)
+      .catch((err) => console.error(`Error getting previous pokemon`, err));
+  }, [pokemonId]);
+
+  if (!pokemonId || !nextPokemon) return null;
 
   return (
     <Layout.CircleColumnContainer>
       <Layout.Column alignCenter>
         <Layout.CircleButton
           onClick={goFoward}
-          disabled={pokemonId + 1 >= maxId}
+          disabled={!nextPokemon || pokemonId + 1 >= maxId}
         >
           <GoChevronRight size="2rem" />
         </Layout.CircleButton>
-        <Layout.Control>Next</Layout.Control>
+        {nextPokemon ? (
+          <Layout.Control>{nextPokemon.name}</Layout.Control>
+        ) : null}
       </Layout.Column>
     </Layout.CircleColumnContainer>
   );

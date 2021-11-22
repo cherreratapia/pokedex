@@ -13,7 +13,6 @@ export default function Ability(props: IProps) {
   const effect = ability?.effect_entries.find(
     (effect) => effect.language.name === "en"
   )?.effect;
-  console.log("🚀 ~ file: index.tsx ~ line 13 ~ Ability ~ ability", ability);
 
   useEffect(() => {
     if (!abilityResource) return;

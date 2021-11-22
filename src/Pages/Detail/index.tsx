@@ -64,17 +64,19 @@ export default function Detail() {
               <PokemonDetail.Id>Nº {pokemon?.id}</PokemonDetail.Id>
             </Layout.Row>
             <PokemonDetail.Content>
-              <PokemonDetail.ImageContainer>
-                <PokemonDetail.Image src={pokemon?.sprites.front_default} />
-              </PokemonDetail.ImageContainer>
+              <Layout.Column alignCenter justifyCenter>
+                <PokemonDetail.ImageContainer>
+                  <PokemonDetail.Image src={pokemon?.sprites.front_default} />
+                </PokemonDetail.ImageContainer>
+                <Layout.Column alignCenter flexGrow={false}>
+                  <Pokemon.Name>Tipo</Pokemon.Name>
+                  <Types pokemon={pokemon} />
+                </Layout.Column>
+              </Layout.Column>
               <Layout.Column>
                 <Info pokemon={pokemon} />
               </Layout.Column>
             </PokemonDetail.Content>
-            <Layout.Column alignCenter>
-              <Pokemon.Name>Tipo</Pokemon.Name>
-              <Types pokemon={pokemon} />
-            </Layout.Column>
           </PokemonDetail.Container>
           <Layout.CircleColumn>
             <ForwardButton pokemonId={pokemon?.id} />

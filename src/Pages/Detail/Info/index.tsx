@@ -1,5 +1,5 @@
 import { IPokemon } from "interfaces/PokeApi";
-import { PokemonDetail, Layout, Pokemon } from "StyledComponents";
+import { PokemonDetail, Layout } from "StyledComponents";
 import Ability from "../Ability";
 
 interface Props {
@@ -10,6 +10,7 @@ export default function Info({ pokemon }: Props) {
     <PokemonDetail.Info>
       <Layout.Row>
         <PokemonDetail.StatsColumn flexGrow={false}>
+          <Layout.SubTitle>Basic Info</Layout.SubTitle>
           <Layout.Row>
             {pokemon?.height ? (
               <PokemonDetail.InfoItem>
@@ -28,13 +29,16 @@ export default function Info({ pokemon }: Props) {
               </PokemonDetail.InfoItem>
             ) : null}
           </Layout.Row>
-          {pokemon?.stats
-            ? pokemon.stats.map((element) => (
-                <PokemonDetail.Stats key={element.stat.name}>
-                  {element.stat.name}: {element.base_stat}
-                </PokemonDetail.Stats>
-              ))
-            : null}
+          <Layout.Column>
+            <Layout.SubTitle>Basic Stats</Layout.SubTitle>
+            {pokemon?.stats
+              ? pokemon.stats.map((element) => (
+                  <PokemonDetail.Stats key={element.stat.name}>
+                    {element.stat.name}: {element.base_stat}
+                  </PokemonDetail.Stats>
+                ))
+              : null}
+          </Layout.Column>
         </PokemonDetail.StatsColumn>
         <Layout.Column>
           <Layout.Row justifyCenter>
@@ -42,7 +46,7 @@ export default function Info({ pokemon }: Props) {
           </Layout.Row>
           {pokemon?.abilities
             ? pokemon.abilities.map((ability) => (
-                <Ability abilityResource={ability} />
+                <Ability key={ability.ability.name} abilityResource={ability} />
               ))
             : null}
         </Layout.Column>
